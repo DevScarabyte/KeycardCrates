@@ -1,7 +1,7 @@
-modded class MissionGameplay 
-{	
-	void MissionGameplay() 
-	{
-		GetRPCManager().SendRPC( "KeycardCrates", "SLCServerActions");
-	}
-};
+// modded class MissionGameplay 
+// {	
+// 	void MissionGameplay() 
+// 	{
+// 		GetRPCManager().SendRPC( "KeycardCrates", "SLCServerActions");
+// 	}
+// };

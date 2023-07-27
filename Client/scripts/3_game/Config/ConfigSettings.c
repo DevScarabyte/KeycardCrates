@@ -58,9 +58,6 @@ class KeyCardSettings: Managed
 	
     void KeyCardSettings()
     {
-        debug_build = false;
-        admin_log = false;
-
         KeyCard_Locations = new array< autoptr KeyCardLocations >;
     }
 
@@ -126,7 +123,7 @@ class CrateSettings: Managed
 		{
 			CreateConfig();
 			loaded = LoadConfig();
-			GetDayZGame().SetSpawnableCrateConfig(this);
+			//GetDayZGame().SetSpawnableCrateConfig(this);
 		}
     }
 

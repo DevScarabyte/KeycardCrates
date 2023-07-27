@@ -1,25 +1,19 @@
 modded class DayZGame // TODO: Add Keycard config
 {
     protected ref CrateSettings m_SLCConfig;
+    protected ref KeyCardSettings m_KeyCardCofig;
     
     void DayZGame()
 	{
         GetRPCManager().AddRPC( "KeycardCrates", "SLCClientActions", this, SingleplayerExecutionType.Both );
-        GetRPCManager().AddRPC( "KeycardCrates", "SLCServerActions", this, SingleplayerExecutionType.Both );
     }
 
     void SLCClientActions( CallType type, ParamsReadContext ctx, PlayerIdentity sender, Object target )
 	{	
-        Param1<CrateSettings> dataConfig;
+        Param2<CrateSettings, KeyCardSettings> dataConfig;
         if(!ctx.Read(dataConfig))
             return;
-        SetSpawnableCrateConfig(dataConfig.param1);
-	}
-
-    void SLCServerActions( CallType type, ParamsReadContext ctx, PlayerIdentity sender, Object target )
-	{
-		auto configParams = new Param1<CrateSettings>(GetSpawnableCrateConfig());
-        GetRPCManager().SendRPC( "KeycardCrates", "SLCClientActions", configParams );
+        SetSpawnableCrateConfig(dataConfig.param1, dataConfig.param2);
 	}
 
     CrateSettings GetSpawnableCrateConfig()
@@ -33,35 +27,51 @@ modded class DayZGame // TODO: Add Keycard config
         {
             return null;
         }
-        return m_SLCConfig;
+        return m_SLCConfig.GetInstance();
     }
 
-    void SetSpawnableCrateConfig(CrateSettings config)
+    KeyCardSettings GetKeyCardConfig()
     {
-        if (GetGame().IsClient())
-            ClientSetSpawnableCrateConfig(config);
-        else
-            ServerSetSpawnableCrateConfig(config);
-    }
-
-    void ServerSetSpawnableCrateConfig(CrateSettings config)
-    {
-        if(GetGame().IsClient())
+        if (!m_KeyCardCofig && !GetGame().IsClient())
         {
-            Error("ERROR: ServerSetSpawnableCrateConfig can only be called on server");
-            return;
+            m_KeyCardCofig = new KeyCardSettings();
+            m_KeyCardCofig.Load();
         }
-        m_SLCConfig = config;
-    }
-
-    void ClientSetSpawnableCrateConfig(CrateSettings config)
-    {
-        if(!GetGame().IsClient())
+        else if(!m_KeyCardCofig && GetGame().IsClient())
         {
-            Error("ERROR: ClientSetSpawnableCrateConfig can only be called on client");
-            return;
+            return null;
         }
-
-        m_SLCConfig = config;
+        return m_KeyCardCofig.GetInstance();
     }
+
+    void SetSpawnableCrateConfig(CrateSettings config, KeyCardSettings kcConfig)
+    {
+        m_SLCConfig = config;
+        m_KeyCardCofig = kcConfig;
+        // if (GetGame().IsClient())
+        //     ClientSetSpawnableCrateConfig(config);
+        // else
+        //     ServerSetSpawnableCrateConfig(config);
+    }
+
+    // void ServerSetSpawnableCrateConfig(CrateSettings config)
+    // {
+    //     if(GetGame().IsClient())
+    //     {
+    //         Error("ERROR: ServerSetSpawnableCrateConfig can only be called on server");
+    //         return;
+    //     }
+    //     m_SLCConfig = config;
+    // }
+
+    // void ClientSetSpawnableCrateConfig(CrateSettings config)
+    // {
+    //     if(!GetGame().IsClient())
+    //     {
+    //         Error("ERROR: ClientSetSpawnableCrateConfig can only be called on client");
+    //         return;
+    //     }
+
+    //     m_SLCConfig = config;
+    // }
 };
