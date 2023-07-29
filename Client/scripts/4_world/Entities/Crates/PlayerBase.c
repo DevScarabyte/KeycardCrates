@@ -6,6 +6,6 @@ modded class PlayerBase
 
         AddAction(ActionScaraUnlockKeyCardDoor, InputActionMap);
         AddAction(ActionUnlockCrate, InputActionMap);
-        AddAction(ActionDebugAddDoor, InputActionMap);
+        // AddAction(ActionDebugAddDoor, InputActionMap);
     }
 }
