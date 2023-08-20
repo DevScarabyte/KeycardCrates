@@ -25,10 +25,6 @@ class CfgSounds
 	{
 		sound[] = {"\KeycardCrates\Client\sounds\Door_Denied",1,1,1000};
 	};
-	class Alarm_Military: default
-	{
-		sound[] = {"\KeycardCrates\Client\sounds\Alarm_Military",1,1,1000};
-	};
 };
 class CfgSoundShaders
 {
@@ -45,12 +41,6 @@ class CfgSoundShaders
 		volume = 1;
 		range = 10;
 	};
-	class AlarmMilitarySound_Shader: baseCharacter_SoundShader
-	{
-		samples[] = {{"\KeycardCrates\Client\sounds\Alarm_Military",0.25}};
-		volume = 1;
-		range = 10;
-	};
 };
 class CfgSoundSets
 {
@@ -62,9 +52,5 @@ class CfgSoundSets
 	class CardDenied_SoundSet: baseCharacter_SoundSet
 	{
 		soundShaders[] = {"CardDeniedSound_Shader"};
-	};
-	class AlarmMilitary_SoundSet: baseCharacter_SoundSet
-	{
-		soundShaders[] = {"AlarmMilitarySound_Shader"};
 	};
 };

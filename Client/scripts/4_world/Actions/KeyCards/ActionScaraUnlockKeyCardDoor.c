@@ -24,7 +24,7 @@ class ActionScaraUnlockKeyCardDoor: ActionContinuousBase
 	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
-	{		
+	{
 		if( !target ) return false;
 		if( !IsBuilding(target) ) return false;
 		if( !IsInReach(player, target, UAMaxDistances.DEFAULT) ) return false;
@@ -34,14 +34,10 @@ class ActionScaraUnlockKeyCardDoor: ActionContinuousBase
 			doorIndex = building.GetDoorIndex(target.GetComponentIndex());
 			
 			if ( doorIndex != -1 )
-			{
 				if (building.IsDoorLocked(doorIndex) && building.IsKeyCardDoor())
-				{
 					return true;
-				}
-			}
 		}	
-			
+		
 		return false;
 	}
 };

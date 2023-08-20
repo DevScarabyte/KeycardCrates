@@ -7,6 +7,5 @@ modded class ActionConstructor
         actions.Insert(ActionUnlockCrate);
         actions.Insert(ActionCrateOpenClose);
         actions.Insert(ActionScaraUnlockKeyCardDoor);
-        // actions.Insert(ActionDebugAddDoor);
     }
 }

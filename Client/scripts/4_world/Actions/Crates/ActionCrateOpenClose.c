@@ -42,16 +42,4 @@ class ActionCrateOpenClose: ActionInteractBase
 
 		return false;
 	}
-	
-	override void OnStartServer( ActionData action_data )
-	{
-		SpawnableCase_Base crate = SpawnableCase_Base.Cast(action_data.m_Target.GetObject());
-		if(crate)
-		{
-            if(crate.IsOpen())
-                crate.Close();
-            else
-    			crate.Open();
-		}
-	}
 };
