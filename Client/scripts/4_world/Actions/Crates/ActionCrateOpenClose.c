@@ -24,7 +24,7 @@ class ActionCrateOpenClose: ActionInteractBase
 
 		string selection = target.GetObject().GetActionComponentName(target.GetComponentIndex());
 
-		SpawnableCase_Base crate = SpawnableCase_Base.Cast(target.GetObject());
+		/*SpawnableCase_Base*/Container_Base crate = /*SpawnableCase_Base*/Container_Base.Cast(target.GetObject());
 
 		if (crate.IsLocked())
 			return false;

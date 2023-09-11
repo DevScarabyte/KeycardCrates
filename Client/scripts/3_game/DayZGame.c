@@ -30,7 +30,7 @@
 //         return m_SLCConfig.GetInstance();
 //     }
 
-//     KeyCardSettings GetKeyCardConfig().Get()
+//     KeyCardSettings GetKeyCardManager().GetConfig()
 //     {
 //         if (!m_KeyCardCofig && !GetGame().IsClient())
 //         {
