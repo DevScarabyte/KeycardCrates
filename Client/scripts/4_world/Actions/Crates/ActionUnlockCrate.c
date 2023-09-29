@@ -2,9 +2,9 @@ class ActionUnlockCrateCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
     {
-        SpawnableCase_Base crate = SpawnableCase_Base.Cast(m_ActionData.m_Target.GetObject());
+        Container_Base crate = Container_Base.Cast(m_ActionData.m_Target.GetObject());
 
-        if (crate)
+        if (crate && crate.GetUnlockTime() > 0)
             m_ActionData.m_ActionComponent = new CAContinuousTime(crate.GetUnlockTime());
         else
             m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.LOCK);
@@ -39,7 +39,7 @@ class ActionUnlockCrate : ActionContinuousBase
 			return false;
 		if (!target.GetObject())
 			return false;
-		SpawnableCase_Base crate = SpawnableCase_Base.Cast(target.GetObject());
+		Container_Base crate = Container_Base.Cast(target.GetObject());
 
         if(crate)
 		{

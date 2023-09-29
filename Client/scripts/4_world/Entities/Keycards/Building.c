@@ -2,11 +2,13 @@ modded class BuildingBase
 {
     private bool m_isKeyCard; // sync on player side?
     private int m_buildingId;
+    private bool m_debugging;
 
     void BuildingBase()
     {
         RegisterNetSyncVariableBool("m_isKeyCard");
         RegisterNetSyncVariableInt("m_buildingId");
+        RegisterNetSyncVariableBool("m_debugging");
     }
 
     bool IsUsingActions(int door)

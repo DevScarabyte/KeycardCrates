@@ -1,2 +1,4 @@
 addons/
 *.zip
+.vscode/settings.json
+keys/Scarabyte.bikey
