@@ -1,21 +1,16 @@
-class ActionUnlockCrateCB : ActionContinuousBaseCB
+class ActionUnlockHackedCrateCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
     {
-        Container_Base crate = Container_Base.Cast(m_ActionData.m_Target.GetObject());
-
-        if (crate && crate.GetUnlockTime() > 0)
-            m_ActionData.m_ActionComponent = new CAContinuousTime(crate.GetUnlockTime());
-        else
-            m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.LOCK);
+        m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.LOCK);
     }
 }
 
-class ActionUnlockCrate : ActionContinuousBase
+class ActionUnlockHackedCrate : ActionContinuousBase
 {
-    void ActionUnlockCrate()
+    void ActionUnlockHackedCrate()
     {
-        m_CallbackClass = ActionUnlockCrateCB;
+        m_CallbackClass = ActionUnlockHackedCrateCB;
         m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
 		m_FullBody = true;
         m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
@@ -30,7 +25,7 @@ class ActionUnlockCrate : ActionContinuousBase
 
     override string GetText()
     {
-        return "#unlock";
+        return "Start Hacking Crate";
     }
 
     override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item)
@@ -39,15 +34,15 @@ class ActionUnlockCrate : ActionContinuousBase
 			return false;
 		if (!target.GetObject())
 			return false;
-		Container_Base crate = Container_Base.Cast(target.GetObject());
+		SpawnableCase_Hackable_Base crate = SpawnableCase_Hackable_Base.Cast(target.GetObject());
 
-        if(crate && !crate.IsKindOf("SpawnableCase_Hackable_Base"))
+        if(crate)
 		{
             // lets make sure its ready
             //crate.ConvertKeyItem();
             if (Math.AbsInt(item.GetType().Hash()) != crate.GetKeyItem())
                 return false;
-            if (crate.IsLocked())
+            if (crate.IsHacked())
                 return true;
 		}					
         return false;

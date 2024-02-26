@@ -119,7 +119,11 @@ class CfgVehicles
 		scope = 1;
 		canBeDigged = 0;
 	};
-	class MilitaryCrate: SpawnableCase_Base
+	class SpawnableCase_Hackable_Base: SpawnableCase_Openable_Base
+	{
+		scope = 0;
+	};
+	class MilitaryCrate: SpawnableCase_Hackable_Base
 	{
 		scope = 2;
 		displayName = "Military Crate";

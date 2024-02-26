@@ -302,3 +302,53 @@ class SpawnableCase_Openable_Base extends Container_Base
 		RemoveAction(ActionTakeItemToHands);
 	}
 }
+
+class SpawnableCase_Hackable_Base extends Container_Base
+{
+	protected bool kc_hacked;
+	protected bool kc_hacking;
+	
+	void SpawnableCase_Hackable_Base()
+	{
+		RegisterNetSyncVariableBool("kc_hacked");
+		RegisterNetSyncVariableBool("kc_hacking");
+	}
+
+	override bool NameOverride(out string output)
+	{
+		GetGame().ObjectGetDisplayName(this, output);
+		if ( IsHacked() )
+			output = string.Format("Decrypted %1", output);
+		else if( BeingHacked() )
+			output = string.Format("Hacking %1", output);
+		else
+			output = string.Format("Hackable %1", output);
+		return true;
+	}
+
+	bool IsHacked()
+	{
+		return kc_hacked;
+	}
+
+	bool BeingHacked()
+	{
+		return kc_hacking;
+	}
+	
+	override bool CanReleaseCargo(EntityAI attachment)
+	{
+		return IsHacked();
+	}
+
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionHackedCrateOpenClose);
+		RemoveAction(ActionTogglePlaceObject);
+		RemoveAction(ActionPlaceObject);
+		RemoveAction(ActionTakeItem);
+		RemoveAction(ActionTakeItemToHands);
+	}
+}
