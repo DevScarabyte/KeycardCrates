@@ -4,9 +4,7 @@ modded class PlayerBase
 	{
         super.SetActions(InputActionMap);
 
-        AddAction(ActionScaraUnlockKeyCardDoor, InputActionMap);
         AddAction(ActionUnlockCrate, InputActionMap);
         AddAction(ActionUnlockHackedCrate, InputActionMap);
-        AddAction(ActionOpenDebugDoors, InputActionMap);
     }
 }

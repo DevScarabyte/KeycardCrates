@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class KeycardCratesClient
+	class SpawnableCratesClient
 	{
 		units[] = 
 		{
@@ -27,14 +27,14 @@ class CfgPatches
 };
 class CfgMods
 {
-	class KeycardCratesClient
+	class SpawnableCratesClient
 	{
-		dir = "KeycardCratesClient";
+		dir = "SpawnableCratesClient";
 		picture = "";
 		action = "";
 		hideName = 1;
 		hidePicture = 1;
-		name = "KeycardCratesClient";
+		name = "SpawnableCratesClient";
 		credits = "Scarabyte";
 		author = "Scarabyte";
 		authorID = "0";
@@ -47,17 +47,17 @@ class CfgMods
 			class gameScriptModule
 			{
 				value = "";
-				files[] = {"KeycardCrates/Client/scripts/3_Game"};
+				files[] = {"SpawnableCrates/Client/scripts/3_Game"};
 			};
 			class worldScriptModule
 			{
 				value = "";
-				files[] = {"KeycardCrates/Client/scripts/4_World"};
+				files[] = {"SpawnableCrates/Client/scripts/4_World"};
 			};
 			class missionScriptModule
 			{
 				value = "";
-				files[] = {"KeycardCrates/Client/scripts/5_Mission"};
+				files[] = {"SpawnableCrates/Client/scripts/5_Mission"};
 			};
 		};
 	};
@@ -170,13 +170,5 @@ class CfgVehicles
 		scope = 2;
 		displayName = "Oil Barrel";
 		descriptionShort = "Can be used to store things.";
-	};
-	class Paper;
-	class Scarabyte_KeyItem: Paper {};
-	class ExampleKeyCard: Scarabyte_KeyItem
-	{
-		scope = 2;
-		displayName = "Example Keycard";
-		descriptionShort = "Used to open things.";
 	};
 };
